@@ -35,7 +35,7 @@ func NewVaultDevServer(address string) *VaultDevServer {
 	return &testServer
 }
 
-func (t *VaultDevServer) Start() {
+func (t *VaultDevServer) ServerStart() {
 	// find the user's vault token file if it exists
 	homeDir, err := homedir.Dir()
 	if err != nil {
@@ -103,7 +103,7 @@ func (t *VaultDevServer) Start() {
 	t.Running = true
 }
 
-func (t *VaultDevServer) ShutDown() {
+func (t *VaultDevServer) ServerShutDown() {
 	if t.Running {
 		t.Command.Process.Kill()
 	}
@@ -115,7 +115,7 @@ func (t *VaultDevServer) ShutDown() {
 }
 
 // VaultTestClient returns a configured vault client for the test vault server.  By default the client returned has the root token for the test vault instance set.  If you want something else, you will need to reconfigure it.
-func (t *VaultDevServer) VaultClient() *api.Client {
+func (t *VaultDevServer) VaultTestClient() *api.Client {
 	config := api.DefaultConfig()
 
 	err := config.ReadEnvironment()

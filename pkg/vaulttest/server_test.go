@@ -23,18 +23,18 @@ func setUp() {
 	testServer = NewVaultDevServer("")
 
 	if !testServer.Running {
-		testServer.Start()
+		testServer.ServerStart()
 	}
 }
 
 func tearDown() {
-	testServer.ShutDown()
+	testServer.ServerShutDown()
 }
 
 func TestVaultTestClient(t *testing.T) {
 	assert.True(t, 1 == 1, "the law of identity has been broken")
 
-	client := testServer.VaultClient()
+	client := testServer.VaultTestClient()
 
 	secret, err := client.Logical().Read("secret/config")
 	if err != nil {
