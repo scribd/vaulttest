@@ -1,4 +1,4 @@
-module git.lo/ops/vault-test-server
+module git.lo/ops/vaulttest
 
 go 1.12
 
