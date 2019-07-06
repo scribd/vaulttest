@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-var testServer *TestServer
+var testServer *VaultDevServer
 
 func TestMain(m *testing.M) {
 	setUp()
@@ -20,7 +20,7 @@ func TestMain(m *testing.M) {
 }
 
 func setUp() {
-	testServer = NewTestServer("")
+	testServer = NewVaultDevServer("")
 
 	if !testServer.Running {
 		testServer.Start()

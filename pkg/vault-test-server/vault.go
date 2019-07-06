@@ -13,7 +13,7 @@ import (
 	"strings"
 )
 
-type TestServer struct {
+type VaultDevServer struct {
 	Command       *exec.Cmd
 	Running       bool
 	UnsealKey     string
@@ -23,19 +23,19 @@ type TestServer struct {
 	Address       string
 }
 
-func NewTestServer(address string) *TestServer {
+func NewVaultDevServer(address string) *VaultDevServer {
 	if address == "" {
 		address = "127.0.0.1:8200"
 	}
 
-	testServer := TestServer{
+	testServer := VaultDevServer{
 		Address: address,
 	}
 
 	return &testServer
 }
 
-func (t *TestServer) Start() {
+func (t *VaultDevServer) Start() {
 	// find the user's vault token file if it exists
 	homeDir, err := homedir.Dir()
 	if err != nil {
@@ -103,7 +103,7 @@ func (t *TestServer) Start() {
 	t.Running = true
 }
 
-func (t *TestServer) ShutDown() {
+func (t *VaultDevServer) ShutDown() {
 	if t.Running {
 		t.Command.Process.Kill()
 	}
@@ -115,7 +115,7 @@ func (t *TestServer) ShutDown() {
 }
 
 // VaultTestClient returns a configured vault client for the test vault server.  By default the client returned has the root token for the test vault instance set.  If you want something else, you will need to reconfigure it.
-func (t *TestServer) VaultClient() *api.Client {
+func (t *VaultDevServer) VaultClient() *api.Client {
 	config := api.DefaultConfig()
 
 	err := config.ReadEnvironment()
