@@ -1,4 +1,4 @@
-package vaultintegtest
+package vault_test_server
 
 import (
 	"github.com/stretchr/testify/assert"
