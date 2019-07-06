@@ -1,4 +1,4 @@
-package vault_test_server
+package pkg
 
 import (
 	"bufio"
