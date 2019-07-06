@@ -1,4 +1,4 @@
-package pkg
+package vaulttest
 
 import (
 	"github.com/stretchr/testify/assert"
