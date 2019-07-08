@@ -36,6 +36,7 @@ func NewVaultDevServer(address string) *VaultDevServer {
 }
 
 func (t *VaultDevServer) ServerStart() {
+	log.Printf("Starting Server on %s", t.Address)
 	// find the user's vault token file if it exists
 	homeDir, err := homedir.Dir()
 	if err != nil {
@@ -57,7 +58,7 @@ func (t *VaultDevServer) ServerStart() {
 		log.Fatal("'vault' is not installed and available on the path")
 	}
 
-	t.Command = exec.Command(vault, "server", "-dev", "-address", t.Address)
+	t.Command = exec.Command(vault, "server", "-dev", "-dev-listen-address", t.Address)
 
 	t.Command.Stderr = os.Stderr
 	out, err := t.Command.StdoutPipe()
@@ -123,7 +124,7 @@ func (t *VaultDevServer) VaultTestClient() *api.Client {
 		log.Fatalf("failed to inject environment into test vault client config")
 	}
 
-	config.Address = "http://127.0.0.1:8200"
+	config.Address = fmt.Sprintf("http://%s", t.Address)
 
 	client, err := api.NewClient(config)
 	if err != nil {

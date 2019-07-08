@@ -1,6 +1,8 @@
 package vaulttest
 
 import (
+	"fmt"
+	"github.com/phayes/freeport"
 	"github.com/stretchr/testify/assert"
 	"log"
 	"os"
@@ -8,6 +10,7 @@ import (
 )
 
 var testServer *VaultDevServer
+var testAddress string
 
 func TestMain(m *testing.M) {
 	setUp()
@@ -20,7 +23,14 @@ func TestMain(m *testing.M) {
 }
 
 func setUp() {
-	testServer = NewVaultDevServer("")
+	port, err := freeport.GetFreePort()
+	if err != nil {
+		log.Fatalf("Failed to get a free port on which to run the test vault server: %s", err)
+	}
+
+	testAddress = fmt.Sprintf("127.0.0.1:%d", port)
+
+	testServer = NewVaultDevServer(testAddress)
 
 	if !testServer.Running {
 		testServer.ServerStart()
