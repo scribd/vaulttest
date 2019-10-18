@@ -1,5 +1,7 @@
 # vaulttest
 
+[![Circle CI](https://circleci.com/gh/scribd/vaulttest.svg?style=shield)](https://circleci.com/gh/scribd/vaulttest)
+
 Library for spinning up test instances of Hashicorp Vault for use in integration tests locally and in CI systems.
 
 Hashicorp Vault is cool, and can do lots of shtuff, it even has a nice UI, but *managing* it really needs more than pointing and clicking in a UI, or running vault commands against the server.
