@@ -40,14 +40,6 @@ Include the following in your test code:
     }
 
     func setUp() {
-        dir, err := ioutil.TempDir("", "psst")
-        if err != nil {
-            fmt.Printf("Error creating temp dir %q: %s\n", tmpDir, err)
-            os.Exit(1)
-        }
-
-        tmpDir = dir
-
         port, err := freeport.GetFreePort()
         if err != nil {
             log.Fatalf("Failed to get a free port on which to run the test vault server: %s", err)
