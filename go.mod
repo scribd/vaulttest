@@ -1,4 +1,4 @@
-module git.lo/ops/vaulttest
+module github.com/scribd/vaulttest
 
 go 1.12
 
