@@ -4,17 +4,17 @@
 
 Library for spinning up test instances of Hashicorp Vault for use in integration tests locally and in CI systems.
 
-Hashicorp Vault is cool, and can do lots of shtuff, it even has a nice UI, but *managing* it really needs more than pointing and clicking in a UI, or running vault commands against the server.
+Hashicorp Vault is an awesome tool, but if your job is  *managing* it, you need more than pointing and clicking in a UI, or running vault commands against the server.
 
-A much better way is to write some code that instruments your Vault in a predictable manner.
+A much better way is to write some code that instruments your Vault in a predictable manner, but how does one *test* said code?  
 
-But how do you *test* said code?  You really need a test Vault or better yet a fleet of them to test changes in parallel.
+What's really needed is a test Vault or better yet a fleet of them to test changes in parallel.
 
-Unfortunately Hashicorp Vault's source code is not organized/ exported in a way to make it's internal api easily adapted to a fully code defined, in memory Vault Dev server.
+Unfortunately Hashicorp Vault's source code is not organized/ exported in a way to make it's internal api easily adapted to a fully code defined, in memory Vault dev server.
 
-So instead, we have this package which will spin one up- provided the `vault` binary is on the system somewhere.
+What we can do, however, is have this package spin one up- provided the `vault` binary is on the system somewhere.
 
-We'll test the system to find a free port, spin up vault in dev mode on that port, do our tests against it, and shut it down politely once we're done.  Voila!
+The `vaulttest` package will find a free port, spin up vault in dev mode on that port, allow you to do your tests against it, and shut it down politely once you're done.
 
 # Prerequisites
 
